@@ -1,6 +1,7 @@
 package com.rpam.rd.autotasks;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class CatchEmAll {
 
@@ -12,6 +13,22 @@ public class CatchEmAll {
     }
 
     public static void main(String[] args) throws Exception {
-        riskyMethod();
+        try {
+            riskyMethod();
+        }
+        catch (NumberFormatException e){
+            System.err.println("nfe");
+        }
+        catch (ArithmeticException e){
+            System.err.println("ar");
+        }
+        catch (FileNotFoundException e){
+            //throw new Exception("Resource is missing",e);
+            throw new IllegalArgumentException ("Resource is missing",e);
+        }
+        catch (IOException e){
+            throw new IllegalArgumentException ("Resource error",e);
+        }
+
     }
 }
